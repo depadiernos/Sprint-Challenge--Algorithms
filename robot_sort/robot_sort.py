@@ -97,8 +97,36 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        
+        # base case
+        if self.can_move_right() == False:
+            return
+        # pick up card in front of robot
+        self.swap_item()
 
+        # TO THE RIGHT, TO THE RIGHT
+        # if it can move to the right, move to the right
+        while self.can_move_right():
+            self.move_right()
+            # if the card in hand is less the the one on the table, take the card that is higher
+            if self.compare_item() == -1:
+                self.swap_item()
+        # outside the while loop, robot is not at the right-most. so swap the highest card it encountered
+        self.swap_item()
+
+        # TO THE LEFT, TO THE LEFT
+        # do the same thing going to the left. But stope when there is no card in front of the robot. That's where it started.
+        while self.can_move_left() and self.compare_item() is not None:
+            self.move_left()
+            if self.compare_item() == 1:
+                self.swap_item()
+        # swap the lowest card the robot encountered and put it at the left-most
+        self.swap_item()
+
+
+        # now move the robot one to the right and start again.
+        self.move_right()
+        self.sort()
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
