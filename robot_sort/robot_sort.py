@@ -115,7 +115,7 @@ class SortingRobot:
         self.swap_item()
 
         # TO THE LEFT, TO THE LEFT
-        # do the same thing going to the left. But stope when there is no card in front of the robot. That's where it started.
+        # do the same thing going to the left. But stop when there is no card in front of the robot. That's where it started.
         while self.can_move_left() and self.compare_item() is not None:
             self.move_left()
             if self.compare_item() == 1:
